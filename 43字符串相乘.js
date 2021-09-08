@@ -58,12 +58,7 @@ var multiply = function (num1, num2) {
     sum = ''
     flag = 0
   }
-  console.timeEnd()
-
-  console.log("🚀 ~ file: 43.js ~ line 58 ~ multiply ~ arr.reduce(add)", arr.reduce(add))
-  // arr.reduce(add)
-  // console.timeEnd()
-  // return arr.reduce(add)
+  return arr.reduce(add)
 
 };
 var multiply0 = function (num1, num2) {

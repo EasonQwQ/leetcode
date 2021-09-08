@@ -9,15 +9,47 @@
  * @param {*} n 
  */
 var generateMatrix = function (n) {
-  let direction = 'left'
-  let arr = Array(n).fill([])
-  console.log("🚀 ~ file: 59螺旋矩阵 II.js ~ line 14 ~ generateMatrix ~ arr", arr)
-  for (let i = 1; i <= n ** 2; i++) {
-    let i = 0;
-    let j = 0;
-    if (direction === 'left') {
-
+  let direction = ['right', 'down', 'left', 'up'] // 左 下右 上
+  let directIndex = 0
+  let arr = Array(n).fill()
+  arr.forEach((v, k) => {
+    arr[k] = Array(n).fill([])
+  })
+  let i = 0;
+  let j = 0;
+  for (let k = 1; k <= n ** 2; k++) {
+    if (direction[directIndex % 4] === 'right' && JSON.stringify(arr[i][j]) === '[]') {
+      arr[i][j] = k
+      if (JSON.stringify(arr[i][++j]) !== '[]') {
+        directIndex++
+        j--
+        i++
+      }
+    } else if (direction[directIndex % 4] === 'down' && JSON.stringify(arr[i][j]) === '[]') {
+      arr[i][j] = k
+      if (i + 1 === n) {
+        directIndex++
+        j--
+      } else if (JSON.stringify(arr[++i][j]) !== '[]') {
+        directIndex++
+        i--
+        j--
+      }
+    } else if (direction[directIndex % 4] === 'left' && JSON.stringify(arr[i][j]) === '[]') {
+      arr[i][j] = k
+      if (JSON.stringify(arr[i][--j]) !== '[]') {
+        directIndex++
+        j++
+        i--
+      }
+    } else if (direction[directIndex % 4] === 'up' && JSON.stringify(arr[i][j]) === '[]') {
+      arr[i][j] = k
+      if (JSON.stringify(arr[--i][j]) !== '[]') {
+        directIndex++
+        i++
+        j++
+      }
     }
   }
 };
-generateMatrix(3)
+generateMatrix(5)
